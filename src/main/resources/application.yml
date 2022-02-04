@@ -1,0 +1,41 @@
+discord:
+  webhook:
+    url: ${DISCORD_WEBHOOK_URL}
+schedule:
+  cron: "0 0 0 * * *"
+rest:
+  baseUrl: ${API_BASE_URL}
+  credentials:
+    apiKey: ${API_KEY}
+    personal:
+      studentCode: ${PERSONAL_STUDENT_CODE}
+      studentNip: ${PERSONAL_STUDENT_NIP}
+    alternative:
+      studentCode: ${ALTERNATIVE_STUDENT_CODE}
+      studentNip: ${ALTERNATIVE_STUDENT_NIP}
+  api:
+    admission:
+      path: /admission
+      method: GET
+    student:
+      general:
+        path: /student
+        method: GET
+      progress:
+        path: /student/progress
+        method: GET
+      login:
+        path: /student/login
+        method: GET
+    grades:
+      path: /grades
+      method: GET
+    credits:
+      path: /credits
+      method: GET
+    schedule:
+      path: /schedule
+      method: GET
+    paymentorder:
+      path: /paymentorder
+      method: GET
