@@ -21,6 +21,7 @@ public abstract class ScheduledTask {
   protected String baseUrl;
   protected String path;
   protected String method;
+  private String apiKey;
 
   @Autowired
   private Environment env;
@@ -32,8 +33,14 @@ public abstract class ScheduledTask {
     this.baseUrl = baseUrl;
   }
 
+  @Value("${rest.credentials.apiKey}")
+  private void setApiKey(String apiKey) {
+    this.apiKey = apiKey;
+  }
+
   public boolean execute() {
     String url = baseUrl + path;
+    headers.set("x-api-key", apiKey);
     this.setPersonalCredentials();
     if(!this.isRequestSuccessful(url, HttpMethod.GET, new HttpEntity<>(headers))) {
       return false;
